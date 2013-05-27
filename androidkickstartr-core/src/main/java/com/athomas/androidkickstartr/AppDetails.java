@@ -41,6 +41,7 @@ public class AppDetails {
 	private boolean viewPagerIndicator;
 	private boolean roboguice;
 	private boolean androidAnnotations;
+	private boolean scaloid;
 	private boolean restTemplate;
 	private boolean maven;
 	private boolean nineOldAndroids;
@@ -164,6 +165,10 @@ public class AppDetails {
 		return androidAnnotations;
 	}
 
+	public boolean isScaloid() {
+		return scaloid;
+	}
+
 	public boolean isRestTemplate() {
 		return restTemplate;
 	}
@@ -215,6 +220,7 @@ public class AppDetails {
 				", viewPagerIndicator=" + viewPagerIndicator + //
 				", roboguice=" + roboguice + //
 				", androidAnnotations=" + androidAnnotations + //
+				", scaloid=" + scaloid + //
 				", restTemplate=" + restTemplate + //
 				", maven=" + maven + //
 				", nineOldAndroids=" + nineOldAndroids + //
@@ -323,6 +329,11 @@ public class AppDetails {
 			return this;
 		}
 
+		public Builder scaloid(boolean scaloid) {
+			instance.scaloid = scaloid;
+			return this;
+		}		
+
 		public Builder restTemplate(boolean restTemplate) {
 			instance.restTemplate = restTemplate;
 			return this;
@@ -394,9 +405,14 @@ public class AppDetails {
 			if (instance.robolectric && !instance.maven) {
 				throw new IllegalArgumentException("Robolectric is only supported with Maven right now.");
 			}
+			
+			if ((instance.scaloid && instance.androidAnnotations) || 
+				(instance.scaloid && instance.roboguice) || 
+				(instance.androidAnnotations && instance.roboguice)) {
+				throw new IllegalArgumentException("scaloid, androidAnnotations and roboguice must not be implemented together.");
+			}
 
 			return instance;
 		}
 	}
-
 }

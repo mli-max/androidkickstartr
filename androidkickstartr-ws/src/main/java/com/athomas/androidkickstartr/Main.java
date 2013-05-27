@@ -88,6 +88,7 @@ public class Main {
 			@FormParam("actionBarSherlock") boolean actionBarSherlock,//
 			@FormParam("navigationType") String navigationType,//
 			@FormParam("androidAnnotations") boolean androidAnnotations,//
+			@FormParam("scaloid") boolean scaloid,//
 			@FormParam("restTemplate") boolean restTemplate,//
 			@FormParam("maven") boolean maven,//
 			@FormParam("nineOldAndroids") boolean nineOldAndroids,//
@@ -160,6 +161,7 @@ public class Main {
 				viewPagerIndicator(viewPagerIndicator).//
 				roboguice(roboguice).//
 				androidAnnotations(androidAnnotations).//
+				scaloid(scaloid).//
 				restTemplate(restTemplate). //
 				maven(maven). //
 				nineOldAndroids(nineOldAndroids). //
